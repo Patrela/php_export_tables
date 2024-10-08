@@ -1,5 +1,5 @@
 
-# PHP PDO Connecto to export Tables to Excel
+# PHP PDO Connector to export Tables to Excel
 
 PHP code for create a PDO connection, select tables and fields related, and exports it to a Excel File
 
