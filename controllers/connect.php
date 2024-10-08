@@ -1,5 +1,6 @@
 <?php
 include '../models/connector.php';
+session_destroy();
 session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $host = $_POST['host'];
@@ -8,29 +9,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $dbtype = $_POST['databasetype'];
   $username = $_POST['username'];
   $password = $_POST['password'];
-  switch ($dbtype) {
-    case 'mysql':
-      $pdo = new MysqlConnection($host, $port, $dbname, $username, $password);
-      break;
-    case 'pgsql':
-      $pdo = new PostgresConnection($host, $port, $dbname, $username, $password);
-      break;
-    case 'sqlite':
-      $pdo = new SqLiteConnection($dbname);
-      break;
-    case 'sqlsrv':
-      $pdo = new SqlServerConnection($host, $port, $dbname, $username, $password);
-      break;
-  }
+  $connectdata = $_POST; 
+  $connector= new StandardConnection($dbtype, $host, $port, $dbname, $username, $password);
+  $pdo= $connector->getConnector();
 
   try {
-    // $dsn = "mysql:host=$host;port=$port;dbname=$dbname";
-    // $pdo = new PDO($dsn, $username, $password);
-    // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
     $tables = $pdo->getTablesName();
-    session_start();
-    $_SESSION["pdo"] = $pdo;
+    $columns = []; 
+    foreach ($tables as $key => $table) {
+      $columns[$table]= $pdo->getTableColumnsName($table);      
+    }
+    
+    $_SESSION["fieldslist"] = json_encode($columns, JSON_HEX_TAG);
     $_SESSION["tables"] = json_encode($tables); 
+    $_SESSION["connectdata"] = $connectdata;
+
+    // echo '<pre>';
+    // print_r($_SESSION);
+    // echo '</pre>';    
     header("Location: ../views/display.php?dbname=$dbname");
   } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();

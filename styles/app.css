@@ -1,10 +1,126 @@
+
+:root {
+  --main-color : fuchsia;
+}
+button {
+  border-radius: 0;
+}
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+
+button, input, optgroup, select, textarea {
+  margin: 0;
+  text-transform: none;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+form {
+  margin: 5rem auto !important;
+  padding: 1rem;
+  border: 0.125rem solid var(--main-color) !important;
+  width: 41rem !important;
+}
+h1 {
+ text-align: center;
+}
+input{
+  width: 30rem !important;
+}
+
+table{
+  text-align: center;
+  border: 1px #000 solid !important; 
+}
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+[type=button], [type=reset], [type=submit], button {
+  -webkit-appearance: button;
+}
+
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+  cursor: pointer;
+}
+
+
+.btn-info {
+  color: #000;
+  background-color:  var(--main-color) ;
+  border-color:  var(--main-color) ;
+}
+.btn-info:hover {
+  color: #000;
+  background-color:  var(--main-color);
+  border-color:  var(--main-color) ;
+}
+
 .container{
   display: flex;
   flex-direction: row;  
 }
+
+.centered {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;  
+  align-content: center;
+  text-align: center;
+  justify-items: center;
+}
+
+.form-element {
+  display: flex;
+  flex-direction: row;    
+  margin: 1rem;
+  padding: 0.25rem;
+}
+
+.form-element select{
+  font-weight: bold ;
+  /* font-size: large; */
+  width: 10rem !important;
+}
+
+.form-label{
+  width: 10rem !important;
+}
+
+.form-label label{
+  font-weight: bold ;
+  font-size: large;
+}
+
+.list { margin: 1rem; }
+
 .select-list {
-  width: 300px;
+  width: 10rem !important;
   margin: 0.5em;
   border: 1px solid fuchsia !important;
   size: 15;
 }
+
+.tr-title {
+  background: #D0CDCD;
+}
+
+
